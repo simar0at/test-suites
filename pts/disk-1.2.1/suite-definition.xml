@@ -20,6 +20,7 @@
   </Execute>
   <Execute>
     <Test>pts/pgbench</Test>
+    <Arguments>ON_DISK NORMAL_LOAD READ_WRITE</Arguments>
   </Execute>
   <Execute>
     <Test>pts/compilebench</Test>
@@ -27,12 +28,12 @@
   </Execute>
   <Execute>
     <Test>pts/iozone</Test>
-    <Arguments>-r 4k -s 8192M -i0</Arguments>
+    <Arguments>-r 4k -s 8192M -i0 #WRITE</Arguments>
     <Description>8GB Write Performance</Description>
   </Execute>
   <Execute>
     <Test>pts/iozone</Test>
-    <Arguments>-r 4k -s 8192M -i0 -i1</Arguments>
+    <Arguments>-r 4k -s 8192M -i0 -i1 #READ</Arguments>
     <Description>8GB Read Performance</Description>
   </Execute>
   <Execute>
@@ -62,8 +63,13 @@
   </Execute>
   <Execute>
     <Test>pts/fio</Test>
-    <Arguments>examples/iometer-file-access-server</Arguments>
-    <Description>Intel IOMeter File Server Access Pattern</Description>
+    <Arguments>randread libaio 1 0 4k</Arguments>
+    <Description>Type: Random Read - IO Engine: Libaio - Buffered: Yes - Direct: No - Block Size: 4KB - Disk Target: Default Test Directory</Description>
+  </Execute>
+  <Execute>
+    <Test>pts/fio</Test>
+    <Arguments>randwrite libaio 1 0 4k</Arguments>
+    <Description>Type: Random Write - IO Engine: Libaio - Buffered: Yes - Direct: No - Block Size: 4KB - Disk Target: Default Test Directory</Description>
   </Execute>
   <Execute>
     <Test>pts/tiobench</Test>
